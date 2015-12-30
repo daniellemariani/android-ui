@@ -2,6 +2,7 @@ package com.dmariani.androidui.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dmariani.androidui.R;
+import com.dmariani.androidui.util.FileUtils;
+import com.dmariani.androidui.util.LogUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Provides basic operations with the device camera
@@ -24,7 +30,7 @@ public class CameraFragment extends Fragment {
     /**
      * Constants
      */
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_TAKE_PHOTO = 1;
 
     /**
      * Views
@@ -32,6 +38,11 @@ public class CameraFragment extends Fragment {
     private TextView textViewTitle;
     private ImageView imageViewPhoto;
     private Button buttonCamera;
+
+    /**
+     * Attributes
+     */
+    private File currentPhotoFile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,16 +68,32 @@ public class CameraFragment extends Fragment {
     private void launchCameraIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            currentPhotoFile = null;
+            try {
+                currentPhotoFile = FileUtils.createImageFile();
+            } catch (IOException e) {
+                LogUtils.e(e);
+            }
+
+            if (currentPhotoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(currentPhotoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
         }
+
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageViewPhoto.setImageBitmap(imageBitmap);
+        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == getActivity().RESULT_OK) {
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(currentPhotoFile));
+                imageViewPhoto.setImageBitmap(bitmap);
+                LogUtils.i("Photo saved: " + currentPhotoFile.getAbsolutePath());
+            } catch (IOException e) {
+                LogUtils.e(e);
+            }
         }
     }
 }
