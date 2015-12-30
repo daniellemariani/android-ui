@@ -1,0 +1,144 @@
+package com.dmariani.androidui.activity;
+
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
+import com.dmariani.androidui.R;
+import com.dmariani.androidui.fragment.SimpleTextFragment;
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, MainActivityNavigationInterface {
+
+    private DrawerLayout drawer;
+    private int currentNavigationOption;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floating_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Some information to display", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    private void setSimpleTextFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.layout_content, fragment)
+                .commit();
+    }
+
+    /**
+     * MENU
+     */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * NAVIGATION MENU
+     */
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        if (currentNavigationOption == item.getItemId()) {
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+
+        currentNavigationOption = item.getItemId();
+
+        if (currentNavigationOption == R.id.nav_camera) {
+            navigateToCamera();
+        } else if (currentNavigationOption == R.id.nav_gallery) {
+            navigateToGallery();
+        } else if (currentNavigationOption == R.id.nav_music) {
+            navigateToMusic();
+        } else if (currentNavigationOption == R.id.nav_radio) {
+            navigateToRadio();
+        } else if (currentNavigationOption == R.id.nav_option1) {
+            navigateToAndroid(getString(R.string.nav_menu_option1));
+        } else if (currentNavigationOption == R.id.nav_option2) {
+            navigateToAndroid(getString(R.string.nav_menu_option2));
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void navigateToCamera() {
+        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_camera)));
+    }
+
+    @Override
+    public void navigateToGallery() {
+        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_gallery)));
+    }
+
+    @Override
+    public void navigateToMusic() {
+        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_music)));
+    }
+
+    @Override
+    public void navigateToRadio() {
+        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_radio)));
+    }
+
+    @Override
+    public void navigateToAndroid(String message) {
+        setSimpleTextFragment(SimpleTextFragment.newInstance(message));
+    }
+}

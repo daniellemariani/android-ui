@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Android UI</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- navigation header -->
+    <string name="nav_header_full_name">Danielle Mariani</string>
+    <string name="nav_header_email">danielle.marinai@gmail.com</string>
+
+    <!-- navigation menu -->
+    <string name="nav_menu_camera">Camera</string>
+    <string name="nav_menu_gallery">Gallery</string>
+    <string name="nav_menu_music">Music</string>
+    <string name="nav_menu_radio">Radio</string>
+    <string name="nav_menu_android">Android</string>
+    <string name="nav_menu_option1">Option 1</string>
+    <string name="nav_menu_option2">Option 2</string>
+
+
+</resources>
