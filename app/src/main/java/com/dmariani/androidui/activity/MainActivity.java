@@ -1,5 +1,6 @@
 package com.dmariani.androidui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.dmariani.androidui.R;
+import com.dmariani.androidui.fragment.CameraFragment;
 import com.dmariani.androidui.fragment.SimpleTextFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void setSimpleTextFragment(Fragment fragment) {
+    private void setContentFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.layout_content, fragment)
                 .commit();
@@ -119,26 +121,31 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void navigateToCamera() {
-        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_camera)));
+        setContentFragment(new CameraFragment());
     }
 
     @Override
     public void navigateToGallery() {
-        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_gallery)));
+        setContentFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_gallery)));
     }
 
     @Override
     public void navigateToMusic() {
-        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_music)));
+        setContentFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_music)));
     }
 
     @Override
     public void navigateToRadio() {
-        setSimpleTextFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_radio)));
+        setContentFragment(SimpleTextFragment.newInstance(getString(R.string.nav_menu_radio)));
     }
 
     @Override
     public void navigateToAndroid(String message) {
-        setSimpleTextFragment(SimpleTextFragment.newInstance(message));
+        setContentFragment(SimpleTextFragment.newInstance(message));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

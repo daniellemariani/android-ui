@@ -19,5 +19,7 @@
     <string name="nav_menu_option1">Option 1</string>
     <string name="nav_menu_option2">Option 2</string>
 
+    <!-- camera -->
+    <string name="button_take_photo">Take a Photo</string>
 
 </resources>

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.dmariani.androidui.R;
 
 /**
- * @author  Danielle Mariani
+ * @author Danielle Mariani on 12/30/15.
  */
 public class SimpleTextFragment extends Fragment {
 
