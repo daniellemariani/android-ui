@@ -22,7 +22,15 @@ import com.dmariani.androidui.fragment.SimpleTextFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainActivityNavigationInterface {
 
+    /**
+     * Views
+     */
     private DrawerLayout drawer;
+    private FloatingActionButton floatingButton;
+
+    /**
+     * Attributes
+     */
     private int currentNavigationOption;
 
     @Override
@@ -32,8 +40,8 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floating_button);
-        fab.setOnClickListener(new View.OnClickListener() {
+        floatingButton = (FloatingActionButton) findViewById(R.id.floating_button);
+        floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Some information to display", Snackbar.LENGTH_LONG)
@@ -100,8 +108,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         currentNavigationOption = item.getItemId();
+        floatingButton.setVisibility(View.VISIBLE);
 
         if (currentNavigationOption == R.id.nav_camera) {
+            floatingButton.setVisibility(View.GONE);
             navigateToCamera();
         } else if (currentNavigationOption == R.id.nav_gallery) {
             navigateToGallery();

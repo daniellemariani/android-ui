@@ -21,7 +21,7 @@ public class FileUtils {
     private static final String JPG_FORMAT = ".jpg";
     private static final String FILE_PREFIX = "DM_";
     private static final String FILE_DIRECTORY = "dm_androidui";
-    private static final String IMAGE_DIRECTORY = "images";
+    private static final String IMAGE_DIRECTORY = "dm_images";
 
     public static File getImageDirectory() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + FILE_DIRECTORY

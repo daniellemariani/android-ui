@@ -1,21 +1,24 @@
 package com.dmariani.androidui.fragment;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dmariani.androidui.R;
 import com.dmariani.androidui.util.FileUtils;
 import com.dmariani.androidui.util.LogUtils;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +28,7 @@ import java.io.IOException;
  *
  * @author Danielle Mariani on 12/30/15.
  */
-public class CameraFragment extends Fragment {
+public class CameraFragment extends Fragment implements View.OnClickListener{
 
     /**
      * Constants
@@ -43,6 +46,7 @@ public class CameraFragment extends Fragment {
      * Attributes
      */
     private File currentPhotoFile;
+    private boolean toggleImageSize;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,14 +59,8 @@ public class CameraFragment extends Fragment {
         textViewTitle = (TextView) getView().findViewById(R.id.textview_message);
         imageViewPhoto = (ImageView) getView().findViewById(R.id.imageview_photo);
         buttonCamera = (Button) getView().findViewById(R.id.button_camera);
-        buttonCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                launchCameraIntent();
-            }
-        });
-
-        launchCameraIntent();
+        buttonCamera.setOnClickListener(this);
+        imageViewPhoto.setOnClickListener(this);
     }
 
     private void launchCameraIntent() {
@@ -87,13 +85,44 @@ public class CameraFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == getActivity().RESULT_OK) {
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), Uri.fromFile(currentPhotoFile));
-                imageViewPhoto.setImageBitmap(bitmap);
-                LogUtils.i("Photo saved: " + currentPhotoFile.getAbsolutePath());
-            } catch (IOException e) {
-                LogUtils.e(e);
-            }
+            Picasso.with(getActivity()).load(currentPhotoFile).into(imageViewPhoto);
+            LogUtils.i("Photo saved: " + currentPhotoFile.getAbsolutePath());
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+
+        if (id == R.id.button_camera) {
+            launchCameraIntent();
+        } else if (id == R.id.imageview_photo) {
+            toggleImageSize();
+        }
+    }
+
+    private void toggleImageSize() {
+        if (currentPhotoFile == null) {
+            return;
+        }
+
+        if (toggleImageSize) {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.photo_thumbnail_width),
+                    getResources().getDimensionPixelSize(R.dimen.photo_thumbnail_height));
+            params.addRule(RelativeLayout.BELOW, R.id.textview_message);
+            params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            imageViewPhoto.setLayoutParams(params);
+            imageViewPhoto.setBackgroundColor(Color.TRANSPARENT);
+            buttonCamera.setVisibility(View.VISIBLE);
+        } else {
+            ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            imageViewPhoto.setLayoutParams(params);
+            imageViewPhoto.setBackgroundColor(Color.BLACK);
+            buttonCamera.setVisibility(View.GONE);
+        }
+
+        toggleImageSize = !toggleImageSize;
     }
 }
