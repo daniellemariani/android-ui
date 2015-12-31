@@ -8,6 +8,8 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Camera -->
+    <dimen name="button_photo_width">60dp</dimen>
+    <dimen name="button_photo_height">60dp</dimen>
     <dimen name="photo_thumbnail_width">150dp</dimen>
     <dimen name="photo_thumbnail_height">150dp</dimen>
 

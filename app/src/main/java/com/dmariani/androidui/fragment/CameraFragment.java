@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,7 +39,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
      */
     private TextView textViewTitle;
     private ImageView imageViewPhoto;
-    private Button buttonCamera;
+    private ImageView buttonPhoto;
 
     /**
      * Attributes
@@ -58,8 +57,8 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
         super.onActivityCreated(savedInstanceState);
         textViewTitle = (TextView) getView().findViewById(R.id.textview_message);
         imageViewPhoto = (ImageView) getView().findViewById(R.id.imageview_photo);
-        buttonCamera = (Button) getView().findViewById(R.id.button_camera);
-        buttonCamera.setOnClickListener(this);
+        buttonPhoto = (ImageView) getView().findViewById(R.id.button_photo);
+        buttonPhoto.setOnClickListener(this);
         imageViewPhoto.setOnClickListener(this);
     }
 
@@ -94,7 +93,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         int id = view.getId();
 
-        if (id == R.id.button_camera) {
+        if (id == R.id.button_photo) {
             launchCameraIntent();
         } else if (id == R.id.imageview_photo) {
             toggleImageSize();
@@ -114,13 +113,13 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
             params.addRule(RelativeLayout.CENTER_HORIZONTAL);
             imageViewPhoto.setLayoutParams(params);
             imageViewPhoto.setBackgroundColor(Color.TRANSPARENT);
-            buttonCamera.setVisibility(View.VISIBLE);
+            buttonPhoto.setVisibility(View.VISIBLE);
         } else {
             ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             imageViewPhoto.setLayoutParams(params);
             imageViewPhoto.setBackgroundColor(Color.BLACK);
-            buttonCamera.setVisibility(View.GONE);
+            buttonPhoto.setVisibility(View.GONE);
         }
 
         toggleImageSize = !toggleImageSize;
