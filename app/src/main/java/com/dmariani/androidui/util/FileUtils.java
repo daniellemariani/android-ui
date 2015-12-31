@@ -19,13 +19,23 @@ public class FileUtils {
 
     private static final String DATE_TIME_FORMAT = "yyyyMMdd_HHmmss";
     private static final String JPG_FORMAT = ".jpg";
+    private static final String MP4_FORMAT = ".mp4";
     private static final String FILE_PREFIX = "DM_";
     private static final String FILE_DIRECTORY = "dm_androidui";
     private static final String IMAGE_DIRECTORY = "dm_images";
+    private static final String VIDEO_DIRECTORY = "dm_videos";
 
     public static File getImageDirectory() {
         String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + FILE_DIRECTORY
                 + File.separator + IMAGE_DIRECTORY;
+        File directory = new File(path);
+        directory.mkdirs();
+        return directory;
+    }
+
+    public static File getVideoDirectory() {
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + FILE_DIRECTORY
+                + File.separator + VIDEO_DIRECTORY;
         File directory = new File(path);
         directory.mkdirs();
         return directory;
@@ -38,8 +48,17 @@ public class FileUtils {
 
     public static File createImageFile() throws IOException {
         String imageFileName = createImageFileName();
-        File image = new File(getImageDirectory(), imageFileName);
-        return image;
+        return new File(getImageDirectory(), imageFileName);
+    }
+
+    public static String createVideoFileName() {
+        String timeStamp = new SimpleDateFormat(DATE_TIME_FORMAT).format(new Date());
+        return FILE_PREFIX + timeStamp + MP4_FORMAT;
+    }
+
+    public static File createVideoFile() throws IOException {
+        String videoFileName = createVideoFileName();
+        return new File(getVideoDirectory(), videoFileName);
     }
 
     public static void saveImageFile(Context context, Bitmap bitmap) throws IOException {
