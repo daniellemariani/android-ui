@@ -14,4 +14,8 @@
     <dimen name="photo_thumbnail_height">150dp</dimen>
     <dimen name="video_thumbnail_height">250dp</dimen>
 
+    <!-- Floating Labels -->
+    <dimen name="text_description_margin_bottom">20dp</dimen>
+    <dimen name="button_submit_margin_top">40dp</dimen>
+
 </resources>

@@ -15,4 +15,6 @@ public interface MainActivityNavigationInterface {
 
     void navigateToAndroid(String message);
 
+    void navigateToAndroidFeature();
+
 }

@@ -22,4 +22,18 @@
     <!-- camera -->
     <string name="button_take_photo">Take a Photo</string>
 
+    <!-- feature -->
+    <string name="android_feature_title">Android Features</string>
+    <string name="android_feature_message">Here are some features of Android and Material Design</string>
+
+    <!-- floating label feature -->
+    <string name="feature_floating_label_title">Floating Labels</string>
+    <string name="feature_floating_label_description">Basic form using Floating Labels and EditTexts</string>
+    <string name="feature_floating_label_message">Simple form that shows the implementation of Floating Labels. Please, notice EditTexts\' Hints.</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="button_submit">Submit</string>
+    <string name="feature_floating_success_message">Your Full Name is: %1$s %2$s</string>
+    <string name="action_clean">Clean</string>
+
 </resources>

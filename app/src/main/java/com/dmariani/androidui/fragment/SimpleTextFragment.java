@@ -1,7 +1,6 @@
 package com.dmariani.androidui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,16 @@ import com.dmariani.androidui.R;
 /**
  * @author Danielle Mariani on 12/30/15.
  */
-public class SimpleTextFragment extends Fragment {
+public class SimpleTextFragment extends BaseFragment {
 
-    /** Constants */
+    /**
+     * Constants
+     */
     private static final String ARG_MESSAGE = "message";
 
-    /** Views */
+    /**
+     * Views
+     */
     private TextView textViewTitle;
 
     public static SimpleTextFragment newInstance(String message) {
@@ -26,7 +29,7 @@ public class SimpleTextFragment extends Fragment {
         bundle.putString(ARG_MESSAGE, message);
         SimpleTextFragment fragment = new SimpleTextFragment();
         fragment.setArguments(bundle);
-        return  fragment;
+        return fragment;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class SimpleTextFragment extends Fragment {
 
         if (getArguments() != null) {
             String message = getArguments().getString(ARG_MESSAGE);
+            setTitle(message);
             if (!TextUtils.isEmpty(message)) {
                 textViewTitle.setText(message);
             }

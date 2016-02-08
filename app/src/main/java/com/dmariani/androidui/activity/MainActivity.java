@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.dmariani.androidui.R;
 import com.dmariani.androidui.fragment.CameraFragment;
+import com.dmariani.androidui.fragment.FeatureListFragment;
 import com.dmariani.androidui.fragment.SimpleTextFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity
         } else if (currentNavigationOption == R.id.nav_radio) {
             navigateToRadio();
         } else if (currentNavigationOption == R.id.nav_option1) {
-            navigateToAndroid(getString(R.string.nav_menu_option1));
+            navigateToAndroidFeature();
         } else if (currentNavigationOption == R.id.nav_option2) {
             navigateToAndroid(getString(R.string.nav_menu_option2));
         }
@@ -152,6 +153,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void navigateToAndroid(String message) {
         setContentFragment(SimpleTextFragment.newInstance(message));
+    }
+
+    @Override
+    public void navigateToAndroidFeature() {
+        setContentFragment(FeatureListFragment.newInstance());
     }
 
     @Override
