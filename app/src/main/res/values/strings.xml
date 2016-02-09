@@ -57,5 +57,8 @@ According to the population census of 2011 the Caracas proper (Distrito Capital)
     <string name="feature_collapsing_image_toolbar_title">Collapsing Image Toolbar</string>
     <string name="feature_collapsing_image_toolbar_description">Flexible Space example using an Image</string>
 
+    <!-- TabLayout feature -->
+    <string name="feature_tablayout_title">TabLayout</string>
+    <string name="feature_tablayout_description">Basic sample of Material Tabs</string>
 
 </resources>

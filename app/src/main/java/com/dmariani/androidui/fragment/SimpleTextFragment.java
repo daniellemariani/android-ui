@@ -44,7 +44,7 @@ public class SimpleTextFragment extends BaseFragment {
 
         if (getArguments() != null) {
             String message = getArguments().getString(ARG_MESSAGE);
-            setTitle(message);
+            //setTitle(message);
             if (!TextUtils.isEmpty(message)) {
                 textViewTitle.setText(message);
             }

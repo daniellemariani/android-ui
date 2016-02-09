@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 import com.dmariani.androidui.R;
 import com.dmariani.androidui.activity.CollapsingToolbarActivity;
 import com.dmariani.androidui.activity.FeatureActivity;
+import com.dmariani.androidui.activity.TabLayoutActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +63,7 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
         list.add(createRowData(R.string.feature_floating_button_title, R.string.feature_floating_button_description));
         list.add(createRowData(R.string.feature_collapsing_toolbar_title, R.string.feature_collapsing_toolbar_description));
         list.add(createRowData(R.string.feature_collapsing_image_toolbar_title, R.string.feature_collapsing_image_toolbar_description));
+        list.add(createRowData(R.string.feature_tablayout_title, R.string.feature_tablayout_description));
         return list;
     }
 
@@ -86,6 +88,8 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
             bundle.putInt(CollapsingToolbarActivity.TOOLBAR_LAYOUT_TYPE, CollapsingToolbarActivity.IMAGE_AND_TOOLBAR);
             intent = new Intent(getContext(), CollapsingToolbarActivity.class);
             intent.putExtras(bundle);
+        } else if (position == 4) {
+            intent = new Intent(getContext(), TabLayoutActivity.class);
         } else {
             Bundle bundle = new Bundle();
             bundle.putInt(FeatureActivity.FEATURE_TO_SHOW, position);
