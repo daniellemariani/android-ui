@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.dmariani.androidui.R;
+import com.dmariani.androidui.activity.CollapsingToolbarActivity;
 import com.dmariani.androidui.activity.FeatureActivity;
 
 import java.util.ArrayList;
@@ -59,6 +60,8 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
         ArrayList<Map<String, String>> list = new ArrayList();
         list.add(createRowData(R.string.feature_floating_label_title, R.string.feature_floating_label_description));
         list.add(createRowData(R.string.feature_floating_button_title, R.string.feature_floating_button_description));
+        list.add(createRowData(R.string.feature_collapsing_toolbar_title, R.string.feature_collapsing_toolbar_description));
+        list.add(createRowData(R.string.feature_collapsing_image_toolbar_title, R.string.feature_collapsing_image_toolbar_description));
         return list;
     }
 
@@ -71,11 +74,26 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(FeatureActivity.FEATURE_TO_SHOW, position);
-        Intent intent = new Intent(getContext(), FeatureActivity.class);
-        intent.putExtras(bundle);
+        Intent intent;
+
+        if (position == 2) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(CollapsingToolbarActivity.TOOLBAR_LAYOUT_TYPE, CollapsingToolbarActivity.ONLY_TOOLBAR);
+            intent = new Intent(getContext(), CollapsingToolbarActivity.class);
+            intent.putExtras(bundle);
+        } else if (position == 3) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(CollapsingToolbarActivity.TOOLBAR_LAYOUT_TYPE, CollapsingToolbarActivity.IMAGE_AND_TOOLBAR);
+            intent = new Intent(getContext(), CollapsingToolbarActivity.class);
+            intent.putExtras(bundle);
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putInt(FeatureActivity.FEATURE_TO_SHOW, position);
+            intent = new Intent(getContext(), FeatureActivity.class);
+            intent.putExtras(bundle);
+        }
         startActivity(intent);
+
     }
 
 }

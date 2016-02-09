@@ -6,6 +6,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">160dp</dimen>
+    <dimen name="app_bar_image_height">220dp</dimen>
+
 
     <!-- Camera -->
     <dimen name="button_camera_width">60dp</dimen>
@@ -17,5 +20,15 @@
     <!-- Floating Labels -->
     <dimen name="text_description_margin_bottom">20dp</dimen>
     <dimen name="button_submit_margin_top">40dp</dimen>
+
+    <!-- Collapsing Toolbar -->
+    <dimen name="collapsing_toolbar_margin_bottom">32dp</dimen>
+    <dimen name="collapsing_toolbar_margin_start">48dp</dimen>
+    <dimen name="collapsing_toolbar_margin_end">64dp</dimen>
+    <dimen name="article_margin_top">30dp</dimen>
+    <dimen name="article_margin_bottom">30dp</dimen>
+    <dimen name="article_margin_left">10dp</dimen>
+    <dimen name="article_margin_right">10dp</dimen>
+
 
 </resources>
