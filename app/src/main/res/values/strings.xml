@@ -36,4 +36,9 @@
     <string name="feature_floating_success_message">Your Full Name is: %1$s %2$s</string>
     <string name="action_clean">Clean</string>
 
+    <!-- floating label feature -->
+    <string name="feature_floating_button_title">Floating Action Button</string>
+    <string name="feature_floating_button_description">View using Floating Action Buttons</string>
+    <string name="feature_floating_button_message">View that shows the implementation of Floating Action Buttons.</string>
+
 </resources>

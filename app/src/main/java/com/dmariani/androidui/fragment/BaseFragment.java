@@ -14,24 +14,19 @@ import com.dmariani.androidui.R;
 public class BaseFragment extends Fragment {
 
     public void setTitle(int title) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
     }
 
     public void setTitle(String title) {
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
     }
 
     public Context getContext() {
         return getActivity();
     }
 
-    public void showSnackbarMessage(String message, final View.OnClickListener listener) {
+    public void showSnackbarMessage(String message, String action, final View.OnClickListener listener) {
         Snackbar.make(getView(), message, Snackbar.LENGTH_LONG)
-                .setAction(R.string.action_clean, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        listener.onClick(view);
-                    }
-                }).setActionTextColor(getResources().getColor(R.color.textcolor_snackbar_action)).show();
+                .setAction(action, listener).setActionTextColor(getResources().getColor(R.color.textcolor_snackbar_action)).show();
     }
 }

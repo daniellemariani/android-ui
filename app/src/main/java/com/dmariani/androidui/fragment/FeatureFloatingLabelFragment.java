@@ -77,7 +77,8 @@ public class FeatureFloatingLabelFragment extends BaseFragment {
         String firstName = editTextFirstName.getText().toString();
         String lastName = editTextLastName.getText().toString();
         String message = getString(R.string.feature_floating_success_message, firstName, lastName);
-        showSnackbarMessage(message, new View.OnClickListener() {
+        String action = getString(R.string.action_clean);
+        showSnackbarMessage(message, action, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editTextFirstName.setText("");

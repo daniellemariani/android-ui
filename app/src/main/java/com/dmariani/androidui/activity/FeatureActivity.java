@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.dmariani.androidui.R;
+import com.dmariani.androidui.fragment.FeatureFloatingButtonFragment;
 import com.dmariani.androidui.fragment.FeatureFloatingLabelFragment;
 
 /**
@@ -16,6 +17,7 @@ public class FeatureActivity extends AppCompatActivity {
 
     public static final String FEATURE_TO_SHOW = "feature";
     public static final int FLOATING_LABELS_FEATURE = 0;
+    public static final int FLOATING_BUTTON_FEATURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,9 @@ public class FeatureActivity extends AppCompatActivity {
         switch (featureToShow) {
             case FLOATING_LABELS_FEATURE:
                 setContentFragment(FeatureFloatingLabelFragment.newInstance());
+                break;
+            case FLOATING_BUTTON_FEATURE:
+                setContentFragment(FeatureFloatingButtonFragment.newInstance());
                 break;
         }
     }

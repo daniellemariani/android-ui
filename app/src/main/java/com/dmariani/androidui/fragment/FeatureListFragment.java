@@ -58,6 +58,7 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
     private ArrayList<Map<String, String>> buildData() {
         ArrayList<Map<String, String>> list = new ArrayList();
         list.add(createRowData(R.string.feature_floating_label_title, R.string.feature_floating_label_description));
+        list.add(createRowData(R.string.feature_floating_button_title, R.string.feature_floating_button_description));
         return list;
     }
 
