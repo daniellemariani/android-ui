@@ -64,6 +64,7 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
         list.add(createRowData(R.string.feature_collapsing_toolbar_title, R.string.feature_collapsing_toolbar_description));
         list.add(createRowData(R.string.feature_collapsing_image_toolbar_title, R.string.feature_collapsing_image_toolbar_description));
         list.add(createRowData(R.string.feature_tablayout_title, R.string.feature_tablayout_description));
+        list.add(createRowData(R.string.feature_tablayout_image_toolbar_title, R.string.feature_tablayout_image_toolbar_description));
         return list;
     }
 
@@ -89,7 +90,15 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
             intent = new Intent(getContext(), CollapsingToolbarActivity.class);
             intent.putExtras(bundle);
         } else if (position == 4) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(TabLayoutActivity.TOOLBAR_LAYOUT_TYPE, TabLayoutActivity.ONLY_TOOLBAR);
             intent = new Intent(getContext(), TabLayoutActivity.class);
+            intent.putExtras(bundle);
+        } else if (position == 5) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(TabLayoutActivity.TOOLBAR_LAYOUT_TYPE, TabLayoutActivity.IMAGE_AND_TOOLBAR);
+            intent = new Intent(getContext(), TabLayoutActivity.class);
+            intent.putExtras(bundle);
         } else {
             Bundle bundle = new Bundle();
             bundle.putInt(FeatureActivity.FEATURE_TO_SHOW, position);

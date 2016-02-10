@@ -8,7 +8,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="app_bar_height">160dp</dimen>
     <dimen name="app_bar_image_height">220dp</dimen>
-
+    <dimen name="app_bar_image_tablayout_height">256dp</dimen>
 
     <!-- Camera -->
     <dimen name="button_camera_width">60dp</dimen>
@@ -29,6 +29,12 @@
     <dimen name="article_margin_bottom">30dp</dimen>
     <dimen name="article_margin_left">10dp</dimen>
     <dimen name="article_margin_right">10dp</dimen>
+    <dimen name="article_image_height">150dp</dimen>
+    <dimen name="article_title_textsize">20sp</dimen>
+    <dimen name="article_image_textsize">12sp</dimen>
+    <dimen name="article_description_textsize">16sp</dimen>
 
+    <!-- TabLayout -->
+    <dimen name="tablayout_image_toolbar_height">104dp</dimen>
 
 </resources>

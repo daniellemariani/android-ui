@@ -1,7 +1,7 @@
 package com.dmariani.androidui.activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,17 +9,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.dmariani.androidui.R;
-import com.dmariani.androidui.fragment.SimpleTextFragment;
+import com.dmariani.androidui.fragment.ArticleFragment;
+import com.dmariani.androidui.manager.ArticleManager;
+import com.dmariani.androidui.model.Article;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,35 +25,53 @@ import java.util.List;
  */
 public class TabLayoutActivity extends AppCompatActivity {
 
+    /**
+     * Constants
+     */
+    public static final String TOOLBAR_LAYOUT_TYPE = "toolbar_type";
+    public static final int ONLY_TOOLBAR = 0;
+    public static final int IMAGE_AND_TOOLBAR = 1;
+    private static final String LOG_TAG = "TabLayoutActivity";
+
+    /**
+     * Attributes
+     */
+    private int type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tablayout);
+        type = getIntent().getExtras().getInt(TOOLBAR_LAYOUT_TYPE, ONLY_TOOLBAR);
+
+        if (type == ONLY_TOOLBAR) {
+            setContentView(R.layout.activity_tablayout);
+        } else {
+            setContentView(R.layout.activity_tablayout_image_toolbar);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.feature_tablayout_title);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(R.string.feature_tablayout_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        if (type == IMAGE_AND_TOOLBAR) {
+            final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+            collapsingToolbarLayout.setTitleEnabled(false);
+        }
+
+        setUpViewPager();
+    }
+
+    private void setUpViewPager() {
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        setupViewPager(viewPager);
+        boolean nestedScroll = type == IMAGE_AND_TOOLBAR;
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), ArticleManager.getArticles(this), nestedScroll);
+        viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
         tabLayout.setupWithViewPager(viewPager);
-    }
-
-
-    private void setupViewPager(ViewPager viewPager) {
-        ArrayList<String> titles = new ArrayList<>();
-        titles.add("Caracas");
-        titles.add("Margarita");
-        titles.add("Canaima");
-        titles.add("Medanos");
-        titles.add("Morrocoy");
-        titles.add("Paramo");
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), titles);
-        viewPager.setAdapter(adapter);
     }
 
     /**
@@ -83,29 +99,31 @@ public class TabLayoutActivity extends AppCompatActivity {
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
-        private List<String> titles;
+        private List<Article> items;
+        private boolean nestedScroll;
 
-        public ViewPagerAdapter(FragmentManager manager, List<String> titles) {
+        public ViewPagerAdapter(FragmentManager manager, List<Article> items, boolean nestedScroll) {
             super(manager);
-            this.titles = titles;
+            this.items = items;
+            this.nestedScroll = nestedScroll;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return SimpleTextFragment.newInstance(titles.get(position));
+            return ArticleFragment.newInstance(items.get(position), nestedScroll);
         }
 
         @Override
         public int getCount() {
-            if (titles == null || titles.isEmpty()) {
+            if (items == null || items.isEmpty()) {
                 return 0;
             }
-            return titles.size();
+            return items.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return titles.get(position);
+            return items.get(position).getShortTitle();
         }
     }
 }

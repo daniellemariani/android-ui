@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textview_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/article_margin_bottom"
+            android:layout_marginLeft="@dimen/article_margin_left"
+            android:layout_marginRight="@dimen/article_margin_right"
+            android:layout_marginTop="@dimen/article_margin_top"
+            android:text="Title"
+            android:textSize="@dimen/article_title_textsize" />
+
+        <ImageView
+            android:id="@+id/imageview_article"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/article_image_height"
+            android:layout_below="@id/textview_title"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/textview_image_legend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageview_article"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/article_margin_left"
+            android:layout_marginRight="@dimen/article_margin_right"
+            android:gravity="center"
+            android:text="Legend"
+            android:textSize="@dimen/article_image_textsize" />
+
+        <TextView
+            android:id="@+id/textview_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_image_legend"
+            android:layout_marginBottom="@dimen/article_margin_bottom"
+            android:layout_marginLeft="@dimen/article_margin_left"
+            android:layout_marginRight="@dimen/article_margin_right"
+            android:text="Description"
+            android:textSize="@dimen/article_description_textsize" />
+
+    </RelativeLayout>
+
+</ScrollView>
