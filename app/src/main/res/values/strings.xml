@@ -41,6 +41,10 @@
     <string name="feature_floating_button_description">View using Floating Action Buttons</string>
     <string name="feature_floating_button_message">View that shows the implementation of Floating Action Buttons.</string>
 
+    <!-- Quick Return -->
+    <string name="feature_quick_return_title">Quick Return</string>
+    <string name="feature_quick_return_description">Basic sample of Quick Return with the Toolbar</string>
+
     <!-- Collapsing Toolbar feature -->
     <string name="feature_collapsing_toolbar_title">Collapsing Toolbar</string>
     <string name="feature_collapsing_toolbar_description">Flexible Space using the Toolbar</string>

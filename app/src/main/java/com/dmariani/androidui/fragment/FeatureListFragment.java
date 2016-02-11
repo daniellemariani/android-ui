@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 import com.dmariani.androidui.R;
 import com.dmariani.androidui.activity.CollapsingToolbarActivity;
 import com.dmariani.androidui.activity.FeatureActivity;
+import com.dmariani.androidui.activity.QuickReturnActivity;
 import com.dmariani.androidui.activity.TabLayoutActivity;
 
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
         ArrayList<Map<String, String>> list = new ArrayList();
         list.add(createRowData(R.string.feature_floating_label_title, R.string.feature_floating_label_description));
         list.add(createRowData(R.string.feature_floating_button_title, R.string.feature_floating_button_description));
+        list.add(createRowData(R.string.feature_quick_return_title, R.string.feature_quick_return_description));
         list.add(createRowData(R.string.feature_collapsing_toolbar_title, R.string.feature_collapsing_toolbar_description));
         list.add(createRowData(R.string.feature_collapsing_image_toolbar_title, R.string.feature_collapsing_image_toolbar_description));
         list.add(createRowData(R.string.feature_tablayout_title, R.string.feature_tablayout_description));
@@ -80,21 +82,23 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
         Intent intent;
 
         if (position == 2) {
+            intent = new Intent(getContext(), QuickReturnActivity.class);
+        } else if (position == 3) {
             Bundle bundle = new Bundle();
             bundle.putInt(CollapsingToolbarActivity.TOOLBAR_LAYOUT_TYPE, CollapsingToolbarActivity.ONLY_TOOLBAR);
             intent = new Intent(getContext(), CollapsingToolbarActivity.class);
             intent.putExtras(bundle);
-        } else if (position == 3) {
+        } else if (position == 4) {
             Bundle bundle = new Bundle();
             bundle.putInt(CollapsingToolbarActivity.TOOLBAR_LAYOUT_TYPE, CollapsingToolbarActivity.IMAGE_AND_TOOLBAR);
             intent = new Intent(getContext(), CollapsingToolbarActivity.class);
             intent.putExtras(bundle);
-        } else if (position == 4) {
+        } else if (position == 5) {
             Bundle bundle = new Bundle();
             bundle.putInt(TabLayoutActivity.TOOLBAR_LAYOUT_TYPE, TabLayoutActivity.ONLY_TOOLBAR);
             intent = new Intent(getContext(), TabLayoutActivity.class);
             intent.putExtras(bundle);
-        } else if (position == 5) {
+        } else if (position == 6) {
             Bundle bundle = new Bundle();
             bundle.putInt(TabLayoutActivity.TOOLBAR_LAYOUT_TYPE, TabLayoutActivity.IMAGE_AND_TOOLBAR);
             intent = new Intent(getContext(), TabLayoutActivity.class);
