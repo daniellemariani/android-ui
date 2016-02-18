@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#303F9F</color>
-    <color name="primary_light">#C5CAE9</color>
-    <color name="accent">#FF5722</color>
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#B6B6B6</color>
 
-    <color name="textcolor_snackbar_action">#FACC2E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#727272</color>
+    <color name="lightgray">#B6B6B6</color>
+    <color name="orange">#FF5722</color>
+    <color name="blue">#448AFF</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="darkindigo">#3F51B5</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="amber">#FFC107</color>
+    <color name="green">#4CAF50</color>
+    <color name="lightgreen">#8BC34A</color>
+    <color name="darkgreen">#388E3C</color>
+
+    <color name="primary">@color/indigo</color>
+    <color name="primary_dark">@color/darkindigo</color>
+    <color name="primary_light">#C5CAE9</color>
+    <color name="accent">@color/orange</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">@color/gray</color>
+    <color name="icons">@color/white</color>
+    <color name="divider">@color/lightgray</color>
+    <color name="textcolor_snackbar_action">@color/amber</color>
+
+    <color name="view_pager_indicator_unselected">#4D000000</color>
+    <color name="transparent_black_80">#14000000</color>
 
 </resources>

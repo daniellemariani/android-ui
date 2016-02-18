@@ -68,4 +68,10 @@ According to the population census of 2011 the Caracas proper (Distrito Capital)
     <!-- TabLayout Image Toolbar feature -->
     <string name="feature_tablayout_image_toolbar_title">TabLayout with Flexible Space</string>
     <string name="feature_tablayout_image_toolbar_description">Basic sample of Material Tabs with Image Toolbar</string>
+
+    <!-- Intro ViewPager -->
+    <string name="feature_intro_viewpager_title">Intro ViewPager</string>
+    <string name="feature_intro_viewpager_description">ViewPager based on Google introduction style</string>
+    <string name="button_skip">Skip</string>
+    <string name="button_finish">Finish</string>
 </resources>
