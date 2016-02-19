@@ -74,4 +74,9 @@ According to the population census of 2011 the Caracas proper (Distrito Capital)
     <string name="feature_intro_viewpager_description">ViewPager based on Google introduction style</string>
     <string name="button_skip">Skip</string>
     <string name="button_finish">Finish</string>
+
+    <!-- Ripple Button feature -->
+    <string name="feature_ripple_button_title">Ripple Drawable</string>
+    <string name="feature_ripple_button_description">Sample of Ripple Drawable over buttons</string>
+    <string name="feature_ripple_button_message">Click on buttons and icons to see the Ripple Effect</string>
 </resources>

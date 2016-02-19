@@ -3,9 +3,11 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent_black_80">#14000000</color>
     <color name="gray">#727272</color>
     <color name="lightgray">#B6B6B6</color>
-    <color name="orange">#FF5722</color>
+    <color name="darkorange">#FF5722</color>
     <color name="blue">#448AFF</color>
     <color name="indigo">#3F51B5</color>
     <color name="darkindigo">#3F51B5</color>
@@ -18,7 +20,7 @@
     <color name="primary">@color/indigo</color>
     <color name="primary_dark">@color/darkindigo</color>
     <color name="primary_light">#C5CAE9</color>
-    <color name="accent">@color/orange</color>
+    <color name="accent">@color/darkorange</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">@color/gray</color>
     <color name="icons">@color/white</color>
@@ -26,6 +28,8 @@
     <color name="textcolor_snackbar_action">@color/amber</color>
 
     <color name="view_pager_indicator_unselected">#4D000000</color>
-    <color name="transparent_black_80">#14000000</color>
+    <drawable name="button_transparent_background">@color/transparent</drawable>
+    <drawable name="button_normal_background">@color/indigo</drawable>
+    <drawable name="button_pressed_background">@color/blue</drawable>
 
 </resources>

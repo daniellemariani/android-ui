@@ -69,6 +69,7 @@ public class FeatureListFragment extends BaseFragment implements AdapterView.OnI
         list.add(createRowData(R.string.feature_tablayout_title, R.string.feature_tablayout_description));
         list.add(createRowData(R.string.feature_tablayout_image_toolbar_title, R.string.feature_tablayout_image_toolbar_description));
         list.add(createRowData(R.string.feature_intro_viewpager_title, R.string.feature_intro_viewpager_description));
+        list.add(createRowData(R.string.feature_ripple_button_title, R.string.feature_ripple_button_description));
         return list;
     }
 

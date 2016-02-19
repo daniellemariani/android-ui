@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import com.dmariani.androidui.R;
 import com.dmariani.androidui.fragment.FeatureFloatingButtonFragment;
 import com.dmariani.androidui.fragment.FeatureFloatingLabelFragment;
+import com.dmariani.androidui.fragment.FeatureRippleButtonFragment;
 
 /**
  * @author Danielle Mariani on 08/02/16.
@@ -18,6 +19,7 @@ public class FeatureActivity extends AppCompatActivity {
     public static final String FEATURE_TO_SHOW = "feature";
     public static final int FLOATING_LABELS_FEATURE = 0;
     public static final int FLOATING_BUTTON_FEATURE = 1;
+    public static final int RIPPLE_BUTTON_FEATURE = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,9 @@ public class FeatureActivity extends AppCompatActivity {
                 break;
             case FLOATING_BUTTON_FEATURE:
                 setContentFragment(FeatureFloatingButtonFragment.newInstance());
+                break;
+            case RIPPLE_BUTTON_FEATURE:
+                setContentFragment(FeatureRippleButtonFragment.newInstance());
                 break;
         }
     }
